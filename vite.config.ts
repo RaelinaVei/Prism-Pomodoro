@@ -20,7 +20,8 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   resolve: {
     alias: {
-      "@": path.resolve(new URL(".", import.meta.url).pathname, "./src"),
+      // Using __dirname or a cleaner path resolution ensures assets are found correctly
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 }));
