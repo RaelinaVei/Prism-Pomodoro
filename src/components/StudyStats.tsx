@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BarChart3, Clock, Flame, ChevronDown, ChevronUp, Trophy } from "lucide-react";
 
-interface StudyStats {
+export interface StudyStats {
   totalFocusMinutes: number;
   totalSessions: number;
   todayFocusMinutes: number;
@@ -27,7 +27,6 @@ export function useStudyStats() {
     const saved = localStorage.getItem("pomodoro-stats");
     if (!saved) return getDefaultStats();
     const parsed = JSON.parse(saved) as StudyStats;
-    // Reset today's stats if it's a new day
     const today = getToday();
     if (parsed.lastStudyDate !== today) {
       return { ...parsed, todayFocusMinutes: 0, todaySessions: 0 };
@@ -64,7 +63,7 @@ export function useStudyStats() {
     });
   };
 
-  return { stats, recordSession };
+  return { stats, recordSession, setStats };
 }
 
 export function StudyStatsWidget({ stats }: { stats: StudyStats }) {

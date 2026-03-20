@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { StickyNote, ChevronDown, ChevronUp } from "lucide-react";
 
-export function QuickNotes() {
+interface Props {
+  userId?: string;
+  onSave?: (content: string) => void;
+}
+
+export function QuickNotes({ userId, onSave }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [notes, setNotes] = useState(() => {
     return localStorage.getItem("pomodoro-notes") || "";
   });
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
   const handleChange = (value: string) => {
     setNotes(value);
     localStorage.setItem("pomodoro-notes", value);
+    if (onSave) {
+      clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => onSave(value), 1500);
+    }
   };
 
   return (
@@ -46,7 +56,7 @@ export function QuickNotes() {
                 className="w-full h-32 bg-transparent border border-white/20 rounded-xl px-3 py-2 text-sm font-body timer-text placeholder:text-white/30 focus:outline-none focus:border-white/40 resize-none"
               />
               <p className="timer-text text-[10px] font-body opacity-40 mt-1">
-                Auto-saved locally
+                {userId ? "☁️ Synced to cloud" : "Auto-saved locally"}
               </p>
             </div>
           </motion.div>
