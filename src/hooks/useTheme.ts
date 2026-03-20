@@ -20,28 +20,50 @@ import minecraft from "@/assets/themes/minecraft.jpg";
 import finalFantasy from "@/assets/themes/final-fantasy.jpg";
 import hollowKnight from "@/assets/themes/hollow-knight.jpg";
 import eldenRing from "@/assets/themes/elden-ring.jpg";
+import silksong from "@/assets/themes/silksong.jpg";
+import persona5 from "@/assets/themes/persona-5.jpg";
+import darkSouls from "@/assets/themes/dark-souls.jpg";
+import cyberpunk from "@/assets/themes/cyberpunk.jpg";
+import animalCrossing from "@/assets/themes/animal-crossing.jpg";
+import stardewValley from "@/assets/themes/stardew-valley.jpg";
+import demonSlayer from "@/assets/themes/demon-slayer.jpg";
+import spiritedAway from "@/assets/themes/spirited-away.jpg";
+import attackOnTitan from "@/assets/themes/attack-on-titan.jpg";
+import jujutsuKaisen from "@/assets/themes/jujutsu-kaisen.jpg";
+
+export type ThemeCategory = "aesthetic" | "gaming" | "anime" | "cozy";
 
 export interface ThemeOption {
   id: string;
   name: string;
   image: string;
-  category: "aesthetic" | "gaming";
+  category: ThemeCategory;
 }
+
+export const themeCategories: { id: ThemeCategory; label: string; icon: string }[] = [
+  { id: "aesthetic", label: "Aesthetic", icon: "sparkles" },
+  { id: "cozy", label: "Cozy", icon: "coffee" },
+  { id: "gaming", label: "Gaming", icon: "gamepad2" },
+  { id: "anime", label: "Anime", icon: "tv" },
+];
 
 export const themes: ThemeOption[] = [
   // Aesthetic
   { id: "city-sunset", name: "City Sunset", image: citySunset, category: "aesthetic" },
-  { id: "cozy-room", name: "Cozy Room", image: cozyRoom, category: "aesthetic" },
   { id: "ocean-dawn", name: "Ocean Dawn", image: oceanDawn, category: "aesthetic" },
-  { id: "forest", name: "Forest", image: forest, category: "aesthetic" },
   { id: "aurora", name: "Aurora", image: aurora, category: "aesthetic" },
   { id: "sakura", name: "Sakura", image: sakura, category: "aesthetic" },
-  { id: "cafe", name: "Café", image: cafe, category: "aesthetic" },
-  { id: "library", name: "Library", image: library, category: "aesthetic" },
-  { id: "zen", name: "Zen Garden", image: zen, category: "aesthetic" },
+  { id: "forest", name: "Forest", image: forest, category: "aesthetic" },
   { id: "rainy-night", name: "Rainy Night", image: rainyNight, category: "aesthetic" },
   { id: "space", name: "Space", image: space, category: "aesthetic" },
   { id: "lavender", name: "Lavender", image: lavender, category: "aesthetic" },
+  // Cozy
+  { id: "cozy-room", name: "Cozy Room", image: cozyRoom, category: "cozy" },
+  { id: "cafe", name: "Café", image: cafe, category: "cozy" },
+  { id: "library", name: "Library", image: library, category: "cozy" },
+  { id: "zen", name: "Zen Garden", image: zen, category: "cozy" },
+  { id: "stardew-valley", name: "Stardew Valley", image: stardewValley, category: "cozy" },
+  { id: "animal-crossing", name: "Animal Crossing", image: animalCrossing, category: "cozy" },
   // Gaming
   { id: "genshin", name: "Genshin Impact", image: genshin, category: "gaming" },
   { id: "honkai-star-rail", name: "Honkai: Star Rail", image: honkaiStarRail, category: "gaming" },
@@ -50,7 +72,16 @@ export const themes: ThemeOption[] = [
   { id: "minecraft", name: "Minecraft", image: minecraft, category: "gaming" },
   { id: "final-fantasy", name: "Final Fantasy", image: finalFantasy, category: "gaming" },
   { id: "hollow-knight", name: "Hollow Knight", image: hollowKnight, category: "gaming" },
+  { id: "silksong", name: "Silksong", image: silksong, category: "gaming" },
   { id: "elden-ring", name: "Elden Ring", image: eldenRing, category: "gaming" },
+  { id: "dark-souls", name: "Dark Souls", image: darkSouls, category: "gaming" },
+  { id: "cyberpunk", name: "Cyberpunk 2077", image: cyberpunk, category: "gaming" },
+  { id: "persona-5", name: "Persona 5", image: persona5, category: "gaming" },
+  // Anime
+  { id: "demon-slayer", name: "Demon Slayer", image: demonSlayer, category: "anime" },
+  { id: "spirited-away", name: "Spirited Away", image: spiritedAway, category: "anime" },
+  { id: "attack-on-titan", name: "Attack on Titan", image: attackOnTitan, category: "anime" },
+  { id: "jujutsu-kaisen", name: "Jujutsu Kaisen", image: jujutsuKaisen, category: "anime" },
 ];
 
 export function useTheme() {

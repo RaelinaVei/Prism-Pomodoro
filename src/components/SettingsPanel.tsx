@@ -1,8 +1,16 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sun, Moon, Palette, Upload, Trash2, Image, Gamepad2, Sparkles } from "lucide-react";
+import { X, Sun, Moon, Palette, Upload, Trash2, Image, Gamepad2, Sparkles, Coffee, Tv } from "lucide-react";
 import type { PomodoroSettings } from "@/hooks/usePomodoro";
-import type { ThemeOption } from "@/hooks/useTheme";
+import type { ThemeOption, ThemeCategory } from "@/hooks/useTheme";
+import { themeCategories } from "@/hooks/useTheme";
+
+const categoryIcons: Record<string, React.ReactNode> = {
+  sparkles: <Sparkles className="w-3 h-3" />,
+  coffee: <Coffee className="w-3 h-3" />,
+  gamepad2: <Gamepad2 className="w-3 h-3" />,
+  tv: <Tv className="w-3 h-3" />,
+};
 
 interface Props {
   open: boolean;
@@ -25,7 +33,7 @@ export function SettingsPanel({
   customBg, onCustomUpload, onClearCustomBg,
 }: Props) {
   const [local, setLocal] = useState(settings);
-  const [themeTab, setThemeTab] = useState<"aesthetic" | "gaming">("aesthetic");
+  const [themeTab, setThemeTab] = useState<ThemeCategory>("aesthetic");
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handleSave = () => {
@@ -118,23 +126,18 @@ export function SettingsPanel({
               <h4 className="text-xs font-display uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1">
                 <Palette className="w-3 h-3" /> Themes
               </h4>
-              <div className="flex gap-2 mb-3">
-                <button
-                  onClick={() => setThemeTab("aesthetic")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-body transition-colors ${
-                    themeTab === "aesthetic" ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-accent"
-                  }`}
-                >
-                  <Sparkles className="w-3 h-3" /> Aesthetic
-                </button>
-                <button
-                  onClick={() => setThemeTab("gaming")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-body transition-colors ${
-                    themeTab === "gaming" ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-accent"
-                  }`}
-                >
-                  <Gamepad2 className="w-3 h-3" /> Gaming
-                </button>
+              <div className="flex gap-2 mb-3 flex-wrap">
+                {themeCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setThemeTab(cat.id)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-body transition-colors ${
+                      themeTab === cat.id ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-accent"
+                    }`}
+                  >
+                    {categoryIcons[cat.icon]} {cat.label}
+                  </button>
+                ))}
               </div>
               <div className="grid grid-cols-4 gap-2">
                 {filteredThemes.map((t) => (
