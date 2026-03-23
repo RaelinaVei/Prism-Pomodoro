@@ -3,6 +3,8 @@
 A beautiful, minimalist Pomodoro timer designed to help you stay focused in a cozy environment. Built with Lovable and powered by modern web technologies.
 
 ![Uploading image.png…]()
+![Uploading image.png…]()
+
 
 ## 🚀 Free Live Website!
 Check out the live site here: [Cozy Focus](https://prismic-pomodoro.lovable.app/)
