@@ -44,7 +44,14 @@ const Index = () => {
           themeCtx.setIsDark(data.settings.isDark);
         }
         if (data.stats) {
-          setStats(data.stats);
+          const today = new Date().toISOString().split("T")[0];
+          const cloudStats = data.stats;
+          // Reset today's counters if last study was a different day
+          if (cloudStats.lastStudyDate !== today) {
+            cloudStats.todayFocusMinutes = 0;
+            cloudStats.todaySessions = 0;
+          }
+          setStats(cloudStats);
         }
       });
     }
