@@ -1,33 +1,14 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Timer, Hourglass, Clock, Flame } from "lucide-react";
+import { Timer, Hourglass, Clock, Flame, Wind } from "lucide-react";
 import { LiveBackground } from "@/components/LiveBackground";
 
 const tools = [
-  {
-    to: "/pomodoro",
-    title: "Pomodoro",
-    desc: "Focus sessions with aesthetic themes",
-    icon: Flame,
-  },
-  {
-    to: "/flipclock",
-    title: "Flip Clock",
-    desc: "Minimal flipping clock, black & white",
-    icon: Clock,
-  },
-  {
-    to: "/countdown",
-    title: "Countdown",
-    desc: "Set any duration and count down",
-    icon: Hourglass,
-  },
-  {
-    to: "/stopwatch",
-    title: "Stopwatch",
-    desc: "Simple, precise timer",
-    icon: Timer,
-  },
+  { to: "/pomodoro", title: "Pomodoro", desc: "Focus sessions with aesthetic themes", icon: Flame },
+  { to: "/flipclock", title: "Flip Clock", desc: "Minimal clock + custom timer, with gradients", icon: Clock },
+  { to: "/countdown", title: "Countdown", desc: "Set any duration & count down", icon: Hourglass },
+  { to: "/stopwatch", title: "Stopwatch", desc: "Simple, precise timing", icon: Timer },
+  { to: "/breathe", title: "Breathe", desc: "Calming box-breathing for focus", icon: Wind },
 ];
 
 const Home = () => {
