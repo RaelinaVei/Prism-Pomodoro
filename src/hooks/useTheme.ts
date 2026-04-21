@@ -49,6 +49,7 @@ export const themeCategories: { id: ThemeCategory; label: string; icon: string }
 
 export const themes: ThemeOption[] = [
   // Aesthetic
+  { id: "gradient", name: "Gradient", image: "", category: "aesthetic" },
   { id: "city-sunset", name: "City Sunset", image: citySunset, category: "aesthetic" },
   { id: "ocean-dawn", name: "Ocean Dawn", image: oceanDawn, category: "aesthetic" },
   { id: "aurora", name: "Aurora", image: aurora, category: "aesthetic" },
@@ -86,7 +87,7 @@ export const themes: ThemeOption[] = [
 
 export function useTheme() {
   const [currentTheme, setCurrentTheme] = useState<string>(() => {
-    return localStorage.getItem("pomodoro-theme") || "city-sunset";
+    return localStorage.getItem("pomodoro-theme") || "gradient";
   });
 
   const [customBg, setCustomBg] = useState<string | null>(() => {
@@ -128,7 +129,7 @@ export function useTheme() {
 
   const clearCustomBg = () => {
     setCustomBg(null);
-    if (currentTheme === "custom") setCurrentTheme("city-sunset");
+    if (currentTheme === "custom") setCurrentTheme("gradient");
   };
 
   const backgroundImage = currentTheme === "custom" && customBg ? customBg : theme.image;
