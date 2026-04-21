@@ -107,13 +107,22 @@ const Index = () => {
 
       {/* Top bar */}
       <div className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-6 py-4">
-        <motion.h1
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="font-display text-2xl font-bold timer-text tracking-wide"
-        >
-          prismic
-        </motion.h1>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/"
+            className="glass rounded-full p-2.5 timer-text hover:scale-110 transition-transform"
+            title="Back to Home"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </Link>
+          <motion.h1
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="font-display text-2xl font-bold timer-text tracking-wide"
+          >
+            prismic
+          </motion.h1>
+        </div>
 
         <div className="flex items-center gap-3">
           {user ? (
