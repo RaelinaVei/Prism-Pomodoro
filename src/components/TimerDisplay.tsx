@@ -43,8 +43,8 @@ export function TimerDisplay({ display, mode, isRunning, progress }: Props) {
         </svg>
 
         <motion.span
-          className="absolute timer-text font-display text-8xl sm:text-9xl font-extralight tabular-nums"
-          style={{ letterSpacing: "-0.05em", fontFeatureSettings: '"tnum"', lineHeight: 1 }}
+          className="absolute timer-text font-display text-6xl sm:text-7xl font-light tabular-nums"
+          style={{ letterSpacing: "-0.03em", fontFeatureSettings: '"tnum"', lineHeight: 1 }}
           key={display}
           initial={{ scale: 0.95, opacity: 0.7 }}
           animate={{ scale: 1, opacity: 1 }}
