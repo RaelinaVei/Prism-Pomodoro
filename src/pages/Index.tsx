@@ -93,16 +93,54 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Background image */}
-      <motion.img
-        key={themeCtx.currentTheme}
-        src={themeCtx.backgroundImage}
-        alt="Theme background"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {/* Background: animated gradient OR image */}
+      {themeCtx.currentTheme === "gradient" ? (
+        <>
+          <motion.div
+            key="gradient-bg"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              backgroundPosition: ["0% 0%", "100% 100%", "0% 100%", "100% 0%", "0% 0%"],
+            }}
+            transition={{
+              opacity: { duration: 0.8 },
+              backgroundPosition: { duration: 24, repeat: Infinity, ease: "linear" },
+            }}
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(135deg, #1e1b4b, #4c1d95, #6d28d9, #db2777, #f97316, #1e1b4b)",
+              backgroundSize: "400% 400%",
+            }}
+          />
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full blur-3xl opacity-40 pointer-events-none"
+              style={{
+                width: 340 + i * 80,
+                height: 340 + i * 80,
+                background: `radial-gradient(circle, ${["#a855f7","#ec4899","#f59e0b"][i]}, transparent 70%)`,
+                left: `${(i * 33) % 70}%`,
+                top: `${(i * 41) % 60}%`,
+              }}
+              animate={{ x: [0, 80, -60, 0], y: [0, -70, 50, 0], scale: [1, 1.15, 0.9, 1] }}
+              transition={{ duration: 18 + i * 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          ))}
+        </>
+      ) : (
+        <motion.img
+          key={themeCtx.currentTheme}
+          src={themeCtx.backgroundImage}
+          alt="Theme background"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
       <div className="absolute inset-0 theme-overlay" />
 
       {/* Top bar */}
@@ -124,30 +162,11 @@ const Index = () => {
           </motion.h1>
         </div>
 
-        <div className="flex items-center gap-3">
-          {user ? (
-            <div className="flex items-center gap-3">
-              <span className="timer-text text-sm font-body opacity-80 hidden sm:block">
-                {user.user_metadata?.display_name || user.email?.split("@")[0] || "Student"}
-              </span>
-              <button
-                onClick={() => signOut()}
-                className="glass rounded-full p-2.5 timer-text hover:scale-110 transition-transform"
-                title="Sign Out"
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={() => setAuthOpen(true)}
-              className="glass rounded-full px-4 py-2 timer-text text-sm font-display font-medium flex items-center gap-2 hover:scale-105 transition-transform"
-            >
-              <LogIn className="w-4 h-4" />
-              Sign In
-            </button>
-          )}
-        </div>
+        {user && (
+          <span className="timer-text text-sm font-body opacity-80 hidden sm:block">
+            {user.user_metadata?.display_name || user.email?.split("@")[0] || "Student"}
+          </span>
+        )}
       </div>
 
       {/* Content */}
