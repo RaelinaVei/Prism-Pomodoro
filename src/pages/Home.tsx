@@ -186,6 +186,18 @@ const Home = () => {
         </motion.p>
       </div>
 
+      {/* Footer credit */}
+      <motion.footer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="relative z-10 pb-6 text-center"
+      >
+        <p className="text-white/40 text-[11px] font-body tracking-[0.25em] lowercase">
+          made by <span className="text-white/70 font-medium">raelina_vei</span>
+        </p>
+      </motion.footer>
+
       <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
   );

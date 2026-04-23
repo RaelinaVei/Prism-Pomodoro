@@ -140,17 +140,27 @@ const FlipClock = () => {
       {/* soft white veil on light gradients to soften saturation */}
       {isAnimatedGradient && isLightBg && <div className="absolute inset-0 bg-white/10" />}
 
-      {/* Top bar */}
+      {/* Top bar — balanced: 2 left | center | 2 right */}
       <div className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-4 sm:px-5 py-4 gap-2">
-        <Link
-          to="/"
-          className={`rounded-full p-2.5 border backdrop-blur-md ${borderCls} transition-colors shrink-0`}
-          title="Back"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </Link>
+        {/* Left cluster */}
+        <div className="flex items-center gap-2 shrink-0">
+          <Link
+            to="/"
+            className={`rounded-full p-2.5 border backdrop-blur-md ${borderCls} transition-colors`}
+            title="Back"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </Link>
+          <button
+            onClick={() => setBg(isLightBg ? "dark" : "light")}
+            className={`rounded-full p-2.5 border backdrop-blur-md ${borderCls} transition-colors`}
+            title="Toggle light/dark"
+          >
+            {isLightBg ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          </button>
+        </div>
 
-        {/* Mode toggle */}
+        {/* Center: Mode toggle */}
         <div className={`flex rounded-full border backdrop-blur-md ${isLightBg ? "border-black/10" : "border-white/15"} p-1`}>
           <button
             onClick={() => setMode("clock")}
@@ -174,6 +184,7 @@ const FlipClock = () => {
           </button>
         </div>
 
+        {/* Right cluster */}
         <div className="flex items-center gap-2 shrink-0">
           <div className="relative">
             <button
@@ -210,13 +221,6 @@ const FlipClock = () => {
               </motion.div>
             )}
           </div>
-          <button
-            onClick={() => setBg(isLightBg ? "dark" : "light")}
-            className={`rounded-full p-2.5 border backdrop-blur-md ${borderCls} transition-colors`}
-            title="Toggle light/dark"
-          >
-            {isLightBg ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-          </button>
           <FullscreenButton />
         </div>
       </div>
