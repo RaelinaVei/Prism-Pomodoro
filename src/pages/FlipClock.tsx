@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Moon, Sun, Palette, Clock as ClockIcon, Hourglass, Play, Pause, RotateCcw } from "lucide-react";
 import { FlipDigit } from "@/components/FlipDigit";
+import { FullscreenButton } from "@/components/FullscreenButton";
+import { recordStudy } from "@/lib/studyTracker";
 
 const pad = (n: number) => Math.max(0, Math.floor(n)).toString().padStart(2, "0");
 
@@ -41,6 +43,8 @@ const FlipClock = () => {
         setRemaining((r) => {
           if (r <= 1) {
             setRunning(false);
+            const totalSec = inH * 3600 + inM * 60 + inS;
+            if (totalSec > 0) recordStudy(Math.round(totalSec / 60));
             try {
               const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
               const o = ctx.createOscillator();

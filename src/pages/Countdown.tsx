@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Play, Pause, RotateCcw } from "lucide-react";
 import { LiveBackground } from "@/components/LiveBackground";
+import { FullscreenButton } from "@/components/FullscreenButton";
+import { recordStudy } from "@/lib/studyTracker";
 
 const pad = (n: number) => Math.max(0, Math.floor(n)).toString().padStart(2, "0");
 
@@ -30,6 +32,8 @@ const Countdown = () => {
         setRemaining((r) => {
           if (r <= 1) {
             setRunning(false);
+            // Record completed countdown to study history
+            if (total > 0) recordStudy(Math.round(total / 60));
             try {
               const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
               const o = ctx.createOscillator();
@@ -87,7 +91,7 @@ const Countdown = () => {
           <ArrowLeft className="w-4 h-4" />
         </Link>
         <h1 className="font-display text-white text-lg font-semibold tracking-wide">countdown</h1>
-        <div className="w-9" />
+        <FullscreenButton />
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-5 gap-6 pt-20 pb-10">
