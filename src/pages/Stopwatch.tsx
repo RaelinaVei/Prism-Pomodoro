@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Play, Pause, RotateCcw, Flag } from "lucide-react";
 import { LiveBackground } from "@/components/LiveBackground";
+import { FullscreenButton } from "@/components/FullscreenButton";
 
 const pad = (n: number, w = 2) => Math.floor(n).toString().padStart(w, "0");
 
@@ -61,7 +62,7 @@ const Stopwatch = () => {
           <ArrowLeft className="w-4 h-4" />
         </Link>
         <h1 className="font-display text-white text-lg font-semibold tracking-wide">stopwatch</h1>
-        <div className="w-9" />
+        <FullscreenButton />
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-5 gap-10">

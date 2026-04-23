@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Play, Pause } from "lucide-react";
 import { LiveBackground } from "@/components/LiveBackground";
+import { FullscreenButton } from "@/components/FullscreenButton";
 
 // 4-7-8 style box breathing: inhale / hold / exhale / hold
 const PHASES = [
@@ -58,7 +59,7 @@ const Breathing = () => {
           <ArrowLeft className="w-4 h-4" />
         </Link>
         <h1 className="font-display text-white text-lg font-semibold tracking-wide">breathe</h1>
-        <div className="w-9" />
+        <FullscreenButton />
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-5 gap-8 pt-20 pb-10">

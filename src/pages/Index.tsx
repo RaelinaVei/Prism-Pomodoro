@@ -16,11 +16,16 @@ import { SessionCounter } from "@/components/SessionCounter";
 import { MotivationalQuote } from "@/components/MotivationalQuote";
 import { QuickNotes } from "@/components/QuickNotes";
 import { SpotifyEmbed } from "@/components/SpotifyEmbed";
+import { recordStudy } from "@/lib/studyTracker";
 
 const Index = () => {
   const { user } = useAuth();
   const { stats, recordSession, setStats } = useStudyStats();
-  const pomodoro = usePomodoro(recordSession);
+  const trackedRecord = useCallback((mins: number) => {
+    recordSession(mins);
+    recordStudy(mins);
+  }, [recordSession]);
+  const pomodoro = usePomodoro(trackedRecord);
   const themeCtx = useTheme();
   const cloudSync = useCloudSync();
   const [settingsOpen, setSettingsOpen] = useState(false);
