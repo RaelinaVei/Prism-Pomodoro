@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Timer, Hourglass, Clock, Flame, Wind, LogIn, LogOut, BarChart3, ListTodo, BookMarked } from "lucide-react";
+import { Timer, Hourglass, Clock, Flame, Wind, LogIn, LogOut, BarChart3, ListTodo, BookMarked, Sparkles } from "lucide-react";
 import { LiveBackground } from "@/components/LiveBackground";
 import { AuthModal } from "@/components/AuthModal";
 import { useAuth } from "@/contexts/AuthContext";
 
 const tools = [
+  { to: "/lumi", title: "Lumi AI", desc: "Your AI study companion — ask anything ✨", icon: Sparkles },
   { to: "/pomodoro", title: "Pomodoro", desc: "Focus sessions with aesthetic themes", icon: Flame },
   { to: "/flipclock", title: "Flip Clock", desc: "Minimal flip clock + custom timer", icon: Clock },
   { to: "/countdown", title: "Countdown", desc: "Set any duration & count down", icon: Hourglass },
