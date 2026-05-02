@@ -12,6 +12,9 @@ import Stopwatch from "./pages/Stopwatch.tsx";
 import Breathing from "./pages/Breathing.tsx";
 import Stats from "./pages/Stats.tsx";
 import Todo from "./pages/Todo.tsx";
+import Notes from "./pages/Notes.tsx";
+import Subject from "./pages/Subject.tsx";
+import NotesSection from "./pages/NotesSection.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -32,6 +35,9 @@ const App = () => (
             <Route path="/breathe" element={<Breathing />} />
             <Route path="/stats" element={<Stats />} />
             <Route path="/todo" element={<Todo />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/notes/:subjectId" element={<Subject />} />
+            <Route path="/notes/:subjectId/:sectionId" element={<NotesSection />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
