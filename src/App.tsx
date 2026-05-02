@@ -15,6 +15,7 @@ import Todo from "./pages/Todo.tsx";
 import Notes from "./pages/Notes.tsx";
 import Subject from "./pages/Subject.tsx";
 import NotesSection from "./pages/NotesSection.tsx";
+import Lumi from "./pages/Lumi.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/notes" element={<Notes />} />
             <Route path="/notes/:subjectId" element={<Subject />} />
             <Route path="/notes/:subjectId/:sectionId" element={<NotesSection />} />
+            <Route path="/lumi" element={<Lumi />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
