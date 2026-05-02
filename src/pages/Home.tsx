@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Timer, Hourglass, Clock, Flame, Wind, LogIn, LogOut, BarChart3, ListTodo } from "lucide-react";
+import { Timer, Hourglass, Clock, Flame, Wind, LogIn, LogOut, BarChart3, ListTodo, BookMarked } from "lucide-react";
 import { LiveBackground } from "@/components/LiveBackground";
 import { AuthModal } from "@/components/AuthModal";
 import { useAuth } from "@/contexts/AuthContext";
@@ -14,6 +14,7 @@ const tools = [
   { to: "/breathe", title: "Breathe", desc: "Calming box-breathing for focus", icon: Wind },
   { to: "/stats", title: "Stats", desc: "Streaks, history & total study time", icon: BarChart3 },
   { to: "/todo", title: "To-Do", desc: "Quick tasks, saved on this device", icon: ListTodo },
+  { to: "/notes", title: "Notes", desc: "Subject library: teachers, key ideas & more", icon: BookMarked },
 ];
 
 const greeting = (h: number) => {
